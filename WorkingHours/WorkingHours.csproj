@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4046AB74-8E0C-4887-A417-C60CD45026AA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WorkingHours</RootNamespace>
+    <AssemblyName>WorkingHours</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaToolkit, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaToolkit.1.1.0.1\lib\net40\MediaToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="SharpAvi, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpAvi.2.1.2\lib\net45\SharpAvi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Pages\AddBreakPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddNotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BreakPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateOrganization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MessagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrganizatorProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PlayVideoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\QuestionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RolePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SendNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VideoListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WaitForAccept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AppDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EF\Connection.cs" />
+    <Compile Include="Model\AppModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Break.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BreakType.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Notification.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Organization.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrganizationType.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Project.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Role.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Task.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TaskStatu.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TaskWork.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TimeMonitoring.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TypeNotification.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserProject.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VideoManager.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\WorkHistory.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\AuthModules.cs" />
+    <Compile Include="Modules\NManager.cs" />
+    <Compile Include="Modules\OrganizationServer.cs" />
+    <Compile Include="Modules\StaffControl.cs" />
+    <Compile Include="Modules\UserForRole.cs" />
+    <Compile Include="Modules\VM.cs" />
+    <Compile Include="Pages\AddBreakPage.xaml.cs">
+      <DependentUpon>AddBreakPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddNotificationPage.xaml.cs">
+      <DependentUpon>AddNotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BreakPage.xaml.cs">
+      <DependentUpon>BreakPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateOrganization.xaml.cs">
+      <DependentUpon>CreateOrganization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditProfilePage.xaml.cs">
+      <DependentUpon>EditProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessagePage.xaml.cs">
+      <DependentUpon>MessagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrganizatorProfile.xaml.cs">
+      <DependentUpon>OrganizatorProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PlayVideoPage.xaml.cs">
+      <DependentUpon>PlayVideoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\QuestionPage.xaml.cs">
+      <DependentUpon>QuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RolePage.xaml.cs">
+      <DependentUpon>RolePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SendNotification.xaml.cs">
+      <DependentUpon>SendNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StaffPage.xaml.cs">
+      <DependentUpon>StaffPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StatPage.xaml.cs">
+      <DependentUpon>StatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VideoListPage.xaml.cs">
+      <DependentUpon>VideoListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WaitForAccept.xaml.cs">
+      <DependentUpon>WaitForAccept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AppDialog.xaml.cs">
+      <DependentUpon>AppDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SignInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignInPage.xaml.cs">
+      <DependentUpon>SignInPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Nunito\Nunito-Italic-VariableFont_wght.ttf" />
+    <Resource Include="Fonts\Nunito\Nunito-VariableFont_wght.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Black.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-BlackItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Bold.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-BoldItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-ExtraBold.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-ExtraLight.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-ExtraLightItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Italic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Light.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-LightItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Medium.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-MediumItalic.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-Regular.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-SemiBold.ttf" />
+    <Resource Include="Fonts\Nunito\static\Nunito-SemiBoldItalic.ttf" />
+    <EntityDeploy Include="Model\AppModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AppModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\AppModel.edmx.diagram">
+      <DependentUpon>AppModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddBreak.png" />
+    <Resource Include="Resources\BreakTime.png" />
+    <Resource Include="Resources\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Nunito\OFL.txt" />
+    <Resource Include="Fonts\Nunito\README.txt" />
+    <Resource Include="Resources\AppBackground.png" />
+    <Resource Include="Resources\VideoManagerIcon.png" />
+    <Resource Include="Resources\StopVideo.png" />
+    <Resource Include="Resources\PlayVideo.png" />
+    <Resource Include="Resources\AppIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ОкButton.png" />
+    <Resource Include="Resources\Lunch.png" />
+    <Resource Include="Resources\ActiveNotification.png" />
+    <Resource Include="Resources\Edit.png" />
+    <Resource Include="Resources\CancelButton.png" />
+    <Resource Include="Resources\Break.png" />
+    <Resource Include="Resources\VideoIcon.png" />
+    <Resource Include="Resources\Notification.png" />
+    <Resource Include="Resources\ProfileTemplate.png" />
+    <Resource Include="Resources\CloseApp.png" />
+    <Resource Include="Resources\HideApp.png" />
+    <Resource Include="Resources\ResizeApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Staff.png" />
+    <Resource Include="Resources\Trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\AppModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AppModel.edmx</DependentUpon>
+      <LastGenOutput>AppModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\AppModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AppModel.edmx</DependentUpon>
+      <LastGenOutput>AppModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\Stat.png" />
+    <Resource Include="Resources\AddNotification.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

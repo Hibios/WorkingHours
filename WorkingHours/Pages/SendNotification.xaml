@@ -1,0 +1,38 @@
+﻿<Page x:Class="WorkingHours.Pages.SendNotification"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorkingHours.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Отправить запрос" Background="White">
+
+    <Grid>
+        <Image Source="/WorkingHours;component/Resources/AppBackground.png" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,150,0,0" Grid.ZIndex="-1"/>
+        <Grid Grid.ZIndex="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/WorkingHours;component/Resources/AppIcon.png" RenderOptions.BitmapScalingMode="HighQuality" Width="80" Height="80" Margin="0"></Image>
+                <TextBlock Grid.Column="1" Text="Working Hours" VerticalAlignment="Center" Foreground="#FF393939" FontFamily="/WorkingHours;component/Fonts/Nunito/static/#Nunito ExtraBold" FontSize="34"/>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Email предприятия" Margin="0,25,0,0" Style="{DynamicResource StandartTextBlock}"/>
+                <TextBox Grid.Row="1" x:Name="txbOrgEmail" Grid.Column="1" Margin="20" Style="{DynamicResource ClassicTextBox}" HorizontalAlignment="Stretch"/>
+                <Button x:Name="btnSendNotification" Grid.Row="3" Padding="8,5,8,5" Content="Отправить запрос" Foreground="White" Background="#FF38AE48"  FontFamily="/WorkingHours;component/Fonts/Nunito/static/#Nunito" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF38AE48" Style="{DynamicResource ClassicButton}" Click="btnSendNotification_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,109 @@
+﻿<Page x:Class="WorkingHours.Pages.StatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WorkingHours.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="История" Background="White">
+
+    <Page.Resources>
+        <!-- Изображения для приложения -->
+        <Image x:Key="ProfileIcon" Source="/WorkingHours;component/Resources/ProfileTemplate.png"></Image>
+        <Image x:Key="VideoIcon" Source="/WorkingHours;component/Resources/VideoIcon.png"></Image>
+        <Image x:Key="NotificationIcon" Source="/WorkingHours;component/Resources/Notification.png"></Image>
+        <Image x:Key="StaffIcon" Source="/WorkingHours;component/Resources/Staff.png"></Image>
+        <Image x:Key="TrashIcon" Source="/WorkingHours;component/Resources/Trash.png"></Image>
+        <Image x:Key="BreakTime" Source="/WorkingHours;component/Resources/BreakTime.png"></Image>
+        <Grid x:Key="ActiveNotificationIcon">
+            <TextBlock Style="{DynamicResource SmallCLabel}" Text="0" Grid.ZIndex="1" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="8" Margin="0,11,13,0"></TextBlock>
+            <Image Source="/WorkingHours;component/Resources/ActiveNotification.png" Grid.ZIndex="0"></Image>
+        </Grid>
+
+        <Style x:Key="lvClassicItem" TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="true">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/WorkingHours;component/Resources/AppIcon.png" RenderOptions.BitmapScalingMode="HighQuality" Width="50" Height="50" Margin="10,10,0,10"></Image>
+            <TextBlock x:Name="profileTitle" Grid.Column="1" Text="WorkingHours" VerticalAlignment="Center" Foreground="#FF393939" FontFamily="/WorkingHours;component/Fonts/Nunito/static/#Nunito ExtraBold" FontSize="20"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="#393939" BorderThickness="1" CornerRadius="3" Margin="9">
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="btnProfile" RenderOptions.BitmapScalingMode="HighQuality" BorderBrush="{x:Null}" Width="50" Height="50"
+                            Style="{DynamicResource ImageButton}" Content="{StaticResource ProfileIcon}" Background="{x:Null}" Click="btnProfile_Click"/>
+                    <Button x:Name="btnStaff" RenderOptions.BitmapScalingMode="HighQuality" BorderBrush="{x:Null}" Width="50" Height="50"
+                            Style="{DynamicResource ImageButton}" Content="{StaticResource StaffIcon}" Background="{x:Null}" Click="btnStaff_Click"/>
+                    <Button x:Name="btnNotification" RenderOptions.BitmapScalingMode="HighQuality" BorderBrush="{x:Null}" Width="50" Height="50"
+                            Style="{DynamicResource ImageButton}" Content="{StaticResource NotificationIcon}" Background="{x:Null}" Click="btnNotification_Click"/>
+                    <Button x:Name="btnBreakTime" RenderOptions.BitmapScalingMode="HighQuality" BorderBrush="{x:Null}" Width="50" Height="50"
+                            Style="{DynamicResource ImageButton}" Content="{StaticResource BreakTime}" Background="{x:Null}" Click="btnBreakTime_Click"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="#393939" BorderThickness="1" CornerRadius="3" Margin="9" Padding="10">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="История" Grid.Column="0" Style="{DynamicResource StandartTextBlock}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Grid>
+                    <ListView x:Name="statBox" Grid.Row="1" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{DynamicResource MyListViewItem}" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#393939" BorderThickness="1" CornerRadius="3" VerticalAlignment="Top" Cursor="Hand">
+                                    <TextBlock Grid.Column="0" Style="{DynamicResource SmallCLabel}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}   |   Вход: {1}   |   Выход: {2}   |   Перерывы: {3}   |   Всего часов: {4}">
+                                                <Binding Path="Date"></Binding>
+                                                <Binding Path="Login"></Binding>
+                                                <Binding Path="Logout"></Binding>
+                                                <Binding Path="TBreaks"></Binding>
+                                                <Binding Path="TotalHours"></Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

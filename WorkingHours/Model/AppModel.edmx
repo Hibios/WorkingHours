@@ -1,0 +1,1143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище WorkingHoursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Break">
+          <Key>
+            <PropertyRef Name="IdBreak" />
+          </Key>
+          <Property Name="IdBreak" Type="int" Nullable="false" />
+          <Property Name="IdBreakType" Type="int" Nullable="false" />
+          <Property Name="IdTimeMonitoring" Type="int" Nullable="false" />
+          <Property Name="BreakStart" Type="time" Precision="7" />
+          <Property Name="BreakDescription" Type="varchar" MaxLength="100" />
+          <Property Name="BreakEnd" Type="time" Precision="7" />
+          <Property Name="BreakCheck" Type="bit" Nullable="false" />
+          <Property Name="Duration" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BreakType">
+          <Key>
+            <PropertyRef Name="IdBreakType" />
+          </Key>
+          <Property Name="IdBreakType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BreakTitle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTypeNotification" Type="int" Nullable="false" />
+          <Property Name="TitleNotification" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescriptionNotification" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CheckIt" Type="bit" Nullable="false" />
+          <Property Name="IdSender" Type="int" Nullable="false" />
+          <Property Name="IdRecipient" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+          </Key>
+          <Property Name="IdOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganizationType">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="IdProject" />
+          </Key>
+          <Property Name="IdProject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="IdTask" />
+          </Key>
+          <Property Name="IdTask" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TaskDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdResponsibleUser" Type="int" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskStatus">
+          <Key>
+            <PropertyRef Name="IdTaskStatus" />
+          </Key>
+          <Property Name="IdTaskStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskWork">
+          <Key>
+            <PropertyRef Name="IdTaskWork" />
+          </Key>
+          <Property Name="IdTaskWork" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTask" Type="int" Nullable="false" />
+          <Property Name="IdWorkHistory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeMonitoring">
+          <Key>
+            <PropertyRef Name="IdTimeMonitoring" />
+          </Key>
+          <Property Name="IdTimeMonitoring" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="LoginTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="LogoutTime" Type="time" Precision="7" />
+          <Property Name="WorkingDay" Type="date" Nullable="false" />
+          <Property Name="IdWorkHistory" Type="int" />
+        </EntityType>
+        <EntityType Name="TypeNotification">
+          <Key>
+            <PropertyRef Name="IdTypeNotification" />
+          </Key>
+          <Property Name="IdTypeNotification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeNotification" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="50" />
+          <Property Name="DateBirthday" Type="date" Nullable="false" />
+          <Property Name="IdRole" Type="int" />
+          <Property Name="IdOrganization" Type="int" />
+          <Property Name="isVaitingForOrg" Type="bit" Nullable="false" />
+          <Property Name="IdVideoManager" Type="int" />
+          <Property Name="isOrganizationOwner" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProject">
+          <Key>
+            <PropertyRef Name="IdUserProject" />
+          </Key>
+          <Property Name="IdUserProject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdProject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoManager">
+          <Key>
+            <PropertyRef Name="IdVideoManager" />
+          </Key>
+          <Property Name="IdVideoManager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoFolder" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkHistory">
+          <Key>
+            <PropertyRef Name="IdHistory" />
+          </Key>
+          <Property Name="IdHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="SpentMinutes" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Break_BreakType">
+          <End Role="BreakType" Type="Self.BreakType" Multiplicity="1" />
+          <End Role="Break" Type="Self.Break" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BreakType">
+              <PropertyRef Name="IdBreakType" />
+            </Principal>
+            <Dependent Role="Break">
+              <PropertyRef Name="IdBreakType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Break_TimeMonitoring">
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="1" />
+          <End Role="Break" Type="Self.Break" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeMonitoring">
+              <PropertyRef Name="IdTimeMonitoring" />
+            </Principal>
+            <Dependent Role="Break">
+              <PropertyRef Name="IdTimeMonitoring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdRecipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_TypeNotification">
+          <End Role="TypeNotification" Type="Self.TypeNotification" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeNotification">
+              <PropertyRef Name="IdTypeNotification" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdTypeNotification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationType">
+          <End Role="OrganizationType" Type="Self.OrganizationType" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationType">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskStatus">
+          <End Role="TaskStatus" Type="Self.TaskStatus" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatus">
+              <PropertyRef Name="IdTaskStatus" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdResponsibleUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskWork_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskWork" Type="Self.TaskWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="IdTask" />
+            </Principal>
+            <Dependent Role="TaskWork">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskWork_WorkHistory">
+          <End Role="WorkHistory" Type="Self.WorkHistory" Multiplicity="1" />
+          <End Role="TaskWork" Type="Self.TaskWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkHistory">
+              <PropertyRef Name="IdHistory" />
+            </Principal>
+            <Dependent Role="TaskWork">
+              <PropertyRef Name="IdWorkHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeMonitoring_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="TimeMonitoring">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeMonitoring_WorkHistory">
+          <End Role="WorkHistory" Type="Self.WorkHistory" Multiplicity="0..1" />
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkHistory">
+              <PropertyRef Name="IdHistory" />
+            </Principal>
+            <Dependent Role="TimeMonitoring">
+              <PropertyRef Name="IdWorkHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_VideoManager">
+          <End Role="VideoManager" Type="Self.VideoManager" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoManager">
+              <PropertyRef Name="IdVideoManager" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdVideoManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="IdProject" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="IdProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище WorkingHoursModelContainer">
+          <EntitySet Name="Break" EntityType="Self.Break" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BreakType" EntityType="Self.BreakType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationType" EntityType="Self.OrganizationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskStatus" EntityType="Self.TaskStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskWork" EntityType="Self.TaskWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeMonitoring" EntityType="Self.TimeMonitoring" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeNotification" EntityType="Self.TypeNotification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProject" EntityType="Self.UserProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoManager" EntityType="Self.VideoManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkHistory" EntityType="Self.WorkHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Break_BreakType" Association="Self.FK_Break_BreakType">
+            <End Role="BreakType" EntitySet="BreakType" />
+            <End Role="Break" EntitySet="Break" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Break_TimeMonitoring" Association="Self.FK_Break_TimeMonitoring">
+            <End Role="TimeMonitoring" EntitySet="TimeMonitoring" />
+            <End Role="Break" EntitySet="Break" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee" Association="Self.FK_Notification_Employee">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee1" Association="Self.FK_Notification_Employee1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_TypeNotification" Association="Self.FK_Notification_TypeNotification">
+            <End Role="TypeNotification" EntitySet="TypeNotification" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationType" Association="Self.FK_Organization_OrganizationType">
+            <End Role="OrganizationType" EntitySet="OrganizationType" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskStatus" Association="Self.FK_Task_TaskStatus">
+            <End Role="TaskStatus" EntitySet="TaskStatus" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="Self.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskWork_Task" Association="Self.FK_TaskWork_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TaskWork" EntitySet="TaskWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskWork_WorkHistory" Association="Self.FK_TaskWork_WorkHistory">
+            <End Role="WorkHistory" EntitySet="WorkHistory" />
+            <End Role="TaskWork" EntitySet="TaskWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeMonitoring_User" Association="Self.FK_TimeMonitoring_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="TimeMonitoring" EntitySet="TimeMonitoring" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeMonitoring_WorkHistory" Association="Self.FK_TimeMonitoring_WorkHistory">
+            <End Role="WorkHistory" EntitySet="WorkHistory" />
+            <End Role="TimeMonitoring" EntitySet="TimeMonitoring" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Organization" Association="Self.FK_User_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_VideoManager" Association="Self.FK_User_VideoManager">
+            <End Role="VideoManager" EntitySet="VideoManager" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_Project" Association="Self.FK_UserProject_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="UserProject" EntitySet="UserProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_User" Association="Self.FK_UserProject_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserProject" EntitySet="UserProject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkingHoursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Break">
+          <Key>
+            <PropertyRef Name="IdBreak" />
+          </Key>
+          <Property Name="IdBreak" Type="Int32" Nullable="false" />
+          <Property Name="IdBreakType" Type="Int32" Nullable="false" />
+          <Property Name="IdTimeMonitoring" Type="Int32" Nullable="false" />
+          <Property Name="BreakStart" Type="Time" Precision="7" />
+          <Property Name="BreakDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BreakEnd" Type="Time" Precision="7" />
+          <Property Name="BreakCheck" Type="Boolean" Nullable="false" />
+          <Property Name="Duration" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="BreakType" Relationship="Self.FK_Break_BreakType" FromRole="Break" ToRole="BreakType" />
+          <NavigationProperty Name="TimeMonitoring" Relationship="Self.FK_Break_TimeMonitoring" FromRole="Break" ToRole="TimeMonitoring" />
+        </EntityType>
+        <EntityType Name="BreakType">
+          <Key>
+            <PropertyRef Name="IdBreakType" />
+          </Key>
+          <Property Name="IdBreakType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BreakTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Breaks" Relationship="Self.FK_Break_BreakType" FromRole="BreakType" ToRole="Break" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="IdNotification" />
+          </Key>
+          <Property Name="IdNotification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeNotification" Type="Int32" Nullable="false" />
+          <Property Name="TitleNotification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescriptionNotification" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CheckIt" Type="Boolean" Nullable="false" />
+          <Property Name="IdSender" Type="Int32" Nullable="false" />
+          <Property Name="IdRecipient" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Notification_Employee" FromRole="Notification" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Notification_Employee1" FromRole="Notification" ToRole="User" />
+          <NavigationProperty Name="TypeNotification" Relationship="Self.FK_Notification_TypeNotification" FromRole="Notification" ToRole="TypeNotification" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+          </Key>
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrganizationType" Relationship="Self.FK_Organization_OrganizationType" FromRole="Organization" ToRole="OrganizationType" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Organization" FromRole="Organization" ToRole="User" />
+        </EntityType>
+        <EntityType Name="OrganizationType">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Organizations" Relationship="Self.FK_Organization_OrganizationType" FromRole="OrganizationType" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="IdProject" />
+          </Key>
+          <Property Name="IdProject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserProjects" Relationship="Self.FK_UserProject_Project" FromRole="Project" ToRole="UserProject" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="IdTask" />
+          </Key>
+          <Property Name="IdTask" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdResponsibleUser" Type="Int32" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TaskStatu" Relationship="Self.FK_Task_TaskStatus" FromRole="Task" ToRole="TaskStatus" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Task_User" FromRole="Task" ToRole="User" />
+          <NavigationProperty Name="TaskWorks" Relationship="Self.FK_TaskWork_Task" FromRole="Task" ToRole="TaskWork" />
+        </EntityType>
+        <EntityType Name="TaskStatu">
+          <Key>
+            <PropertyRef Name="IdTaskStatus" />
+          </Key>
+          <Property Name="IdTaskStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_TaskStatus" FromRole="TaskStatus" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="TaskWork">
+          <Key>
+            <PropertyRef Name="IdTaskWork" />
+          </Key>
+          <Property Name="IdTaskWork" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTask" Type="Int32" Nullable="false" />
+          <Property Name="IdWorkHistory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_TaskWork_Task" FromRole="TaskWork" ToRole="Task" />
+          <NavigationProperty Name="WorkHistory" Relationship="Self.FK_TaskWork_WorkHistory" FromRole="TaskWork" ToRole="WorkHistory" />
+        </EntityType>
+        <EntityType Name="TimeMonitoring">
+          <Key>
+            <PropertyRef Name="IdTimeMonitoring" />
+          </Key>
+          <Property Name="IdTimeMonitoring" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="LoginTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="LogoutTime" Type="Time" Precision="7" />
+          <Property Name="WorkingDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdWorkHistory" Type="Int32" />
+          <NavigationProperty Name="Breaks" Relationship="Self.FK_Break_TimeMonitoring" FromRole="TimeMonitoring" ToRole="Break" />
+          <NavigationProperty Name="User" Relationship="Self.FK_TimeMonitoring_User" FromRole="TimeMonitoring" ToRole="User" />
+          <NavigationProperty Name="WorkHistory" Relationship="Self.FK_TimeMonitoring_WorkHistory" FromRole="TimeMonitoring" ToRole="WorkHistory" />
+        </EntityType>
+        <EntityType Name="TypeNotification">
+          <Key>
+            <PropertyRef Name="IdTypeNotification" />
+          </Key>
+          <Property Name="IdTypeNotification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeNotification1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_TypeNotification" FromRole="TypeNotification" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateBirthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdRole" Type="Int32" />
+          <Property Name="IdOrganization" Type="Int32" />
+          <Property Name="isVaitingForOrg" Type="Boolean" Nullable="false" />
+          <Property Name="IdVideoManager" Type="Int32" />
+          <Property Name="isOrganizationOwner" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_Employee" FromRole="User" ToRole="Notification" />
+          <NavigationProperty Name="Notifications1" Relationship="Self.FK_Notification_Employee1" FromRole="User" ToRole="Notification" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_User_Organization" FromRole="User" ToRole="Organization" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_User" FromRole="User" ToRole="Task" />
+          <NavigationProperty Name="TimeMonitorings" Relationship="Self.FK_TimeMonitoring_User" FromRole="User" ToRole="TimeMonitoring" />
+          <NavigationProperty Name="VideoManager" Relationship="Self.FK_User_VideoManager" FromRole="User" ToRole="VideoManager" />
+          <NavigationProperty Name="UserProjects" Relationship="Self.FK_UserProject_User" FromRole="User" ToRole="UserProject" />
+        </EntityType>
+        <EntityType Name="UserProject">
+          <Key>
+            <PropertyRef Name="IdUserProject" />
+          </Key>
+          <Property Name="IdUserProject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdProject" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_UserProject_Project" FromRole="UserProject" ToRole="Project" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserProject_User" FromRole="UserProject" ToRole="User" />
+        </EntityType>
+        <EntityType Name="VideoManager">
+          <Key>
+            <PropertyRef Name="IdVideoManager" />
+          </Key>
+          <Property Name="IdVideoManager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoFolder" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_VideoManager" FromRole="VideoManager" ToRole="User" />
+        </EntityType>
+        <EntityType Name="WorkHistory">
+          <Key>
+            <PropertyRef Name="IdHistory" />
+          </Key>
+          <Property Name="IdHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SpentMinutes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TaskWorks" Relationship="Self.FK_TaskWork_WorkHistory" FromRole="WorkHistory" ToRole="TaskWork" />
+          <NavigationProperty Name="TimeMonitorings" Relationship="Self.FK_TimeMonitoring_WorkHistory" FromRole="WorkHistory" ToRole="TimeMonitoring" />
+        </EntityType>
+        <Association Name="FK_Break_BreakType">
+          <End Role="BreakType" Type="Self.BreakType" Multiplicity="1" />
+          <End Role="Break" Type="Self.Break" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BreakType">
+              <PropertyRef Name="IdBreakType" />
+            </Principal>
+            <Dependent Role="Break">
+              <PropertyRef Name="IdBreakType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Break_TimeMonitoring">
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="1" />
+          <End Role="Break" Type="Self.Break" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimeMonitoring">
+              <PropertyRef Name="IdTimeMonitoring" />
+            </Principal>
+            <Dependent Role="Break">
+              <PropertyRef Name="IdTimeMonitoring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdSender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdRecipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_TypeNotification">
+          <End Role="TypeNotification" Type="Self.TypeNotification" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeNotification">
+              <PropertyRef Name="IdTypeNotification" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="IdTypeNotification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_OrganizationType">
+          <End Role="OrganizationType" Type="Self.OrganizationType" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationType">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="IdProject" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="IdProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskStatus">
+          <End Role="TaskStatus" Type="Self.TaskStatu" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatus">
+              <PropertyRef Name="IdTaskStatus" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="IdResponsibleUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskWork_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskWork" Type="Self.TaskWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="IdTask" />
+            </Principal>
+            <Dependent Role="TaskWork">
+              <PropertyRef Name="IdTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskWork_WorkHistory">
+          <End Role="WorkHistory" Type="Self.WorkHistory" Multiplicity="1" />
+          <End Role="TaskWork" Type="Self.TaskWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkHistory">
+              <PropertyRef Name="IdHistory" />
+            </Principal>
+            <Dependent Role="TaskWork">
+              <PropertyRef Name="IdWorkHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeMonitoring_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="TimeMonitoring">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeMonitoring_WorkHistory">
+          <End Role="WorkHistory" Type="Self.WorkHistory" Multiplicity="0..1" />
+          <End Role="TimeMonitoring" Type="Self.TimeMonitoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkHistory">
+              <PropertyRef Name="IdHistory" />
+            </Principal>
+            <Dependent Role="TimeMonitoring">
+              <PropertyRef Name="IdWorkHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_VideoManager">
+          <End Role="VideoManager" Type="Self.VideoManager" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoManager">
+              <PropertyRef Name="IdVideoManager" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdVideoManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProject_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UserProject">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorkingHoursEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Breaks" EntityType="Self.Break" />
+          <EntitySet Name="BreakTypes" EntityType="Self.BreakType" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="OrganizationTypes" EntityType="Self.OrganizationType" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TaskStatus" EntityType="Self.TaskStatu" />
+          <EntitySet Name="TaskWorks" EntityType="Self.TaskWork" />
+          <EntitySet Name="TimeMonitorings" EntityType="Self.TimeMonitoring" />
+          <EntitySet Name="TypeNotifications" EntityType="Self.TypeNotification" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserProjects" EntityType="Self.UserProject" />
+          <EntitySet Name="VideoManagers" EntityType="Self.VideoManager" />
+          <EntitySet Name="WorkHistories" EntityType="Self.WorkHistory" />
+          <AssociationSet Name="FK_Break_BreakType" Association="Self.FK_Break_BreakType">
+            <End Role="BreakType" EntitySet="BreakTypes" />
+            <End Role="Break" EntitySet="Breaks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Break_TimeMonitoring" Association="Self.FK_Break_TimeMonitoring">
+            <End Role="TimeMonitoring" EntitySet="TimeMonitorings" />
+            <End Role="Break" EntitySet="Breaks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee" Association="Self.FK_Notification_Employee">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee1" Association="Self.FK_Notification_Employee1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_TypeNotification" Association="Self.FK_Notification_TypeNotification">
+            <End Role="TypeNotification" EntitySet="TypeNotifications" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_OrganizationType" Association="Self.FK_Organization_OrganizationType">
+            <End Role="OrganizationType" EntitySet="OrganizationTypes" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Organization" Association="Self.FK_User_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_Project" Association="Self.FK_UserProject_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="UserProject" EntitySet="UserProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskStatus" Association="Self.FK_Task_TaskStatus">
+            <End Role="TaskStatus" EntitySet="TaskStatus" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="Self.FK_Task_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskWork_Task" Association="Self.FK_TaskWork_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskWork" EntitySet="TaskWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskWork_WorkHistory" Association="Self.FK_TaskWork_WorkHistory">
+            <End Role="WorkHistory" EntitySet="WorkHistories" />
+            <End Role="TaskWork" EntitySet="TaskWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeMonitoring_User" Association="Self.FK_TimeMonitoring_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TimeMonitoring" EntitySet="TimeMonitorings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeMonitoring_WorkHistory" Association="Self.FK_TimeMonitoring_WorkHistory">
+            <End Role="WorkHistory" EntitySet="WorkHistories" />
+            <End Role="TimeMonitoring" EntitySet="TimeMonitorings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_VideoManager" Association="Self.FK_User_VideoManager">
+            <End Role="VideoManager" EntitySet="VideoManagers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProject_User" Association="Self.FK_UserProject_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserProject" EntitySet="UserProjects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WorkingHoursModelContainer" CdmEntityContainer="WorkingHoursEntities">
+          <EntitySetMapping Name="Breaks">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Break">
+              <MappingFragment StoreEntitySet="Break">
+                <ScalarProperty Name="IdBreak" ColumnName="IdBreak" />
+                <ScalarProperty Name="IdBreakType" ColumnName="IdBreakType" />
+                <ScalarProperty Name="IdTimeMonitoring" ColumnName="IdTimeMonitoring" />
+                <ScalarProperty Name="BreakStart" ColumnName="BreakStart" />
+                <ScalarProperty Name="BreakDescription" ColumnName="BreakDescription" />
+                <ScalarProperty Name="BreakEnd" ColumnName="BreakEnd" />
+                <ScalarProperty Name="BreakCheck" ColumnName="BreakCheck" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BreakTypes">
+            <EntityTypeMapping TypeName="WorkingHoursModel.BreakType">
+              <MappingFragment StoreEntitySet="BreakType">
+                <ScalarProperty Name="IdBreakType" ColumnName="IdBreakType" />
+                <ScalarProperty Name="BreakTitle" ColumnName="BreakTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IdNotification" ColumnName="IdNotification" />
+                <ScalarProperty Name="IdTypeNotification" ColumnName="IdTypeNotification" />
+                <ScalarProperty Name="TitleNotification" ColumnName="TitleNotification" />
+                <ScalarProperty Name="DescriptionNotification" ColumnName="DescriptionNotification" />
+                <ScalarProperty Name="CheckIt" ColumnName="CheckIt" />
+                <ScalarProperty Name="IdSender" ColumnName="IdSender" />
+                <ScalarProperty Name="IdRecipient" ColumnName="IdRecipient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationTypes">
+            <EntityTypeMapping TypeName="WorkingHoursModel.OrganizationType">
+              <MappingFragment StoreEntitySet="OrganizationType">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="IdProject" ColumnName="IdProject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WorkingHoursModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="WorkingHoursModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="IdTask" ColumnName="IdTask" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="IdResponsibleUser" ColumnName="IdResponsibleUser" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskStatus">
+            <EntityTypeMapping TypeName="WorkingHoursModel.TaskStatu">
+              <MappingFragment StoreEntitySet="TaskStatus">
+                <ScalarProperty Name="IdTaskStatus" ColumnName="IdTaskStatus" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskWorks">
+            <EntityTypeMapping TypeName="WorkingHoursModel.TaskWork">
+              <MappingFragment StoreEntitySet="TaskWork">
+                <ScalarProperty Name="IdTaskWork" ColumnName="IdTaskWork" />
+                <ScalarProperty Name="IdTask" ColumnName="IdTask" />
+                <ScalarProperty Name="IdWorkHistory" ColumnName="IdWorkHistory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeMonitorings">
+            <EntityTypeMapping TypeName="WorkingHoursModel.TimeMonitoring">
+              <MappingFragment StoreEntitySet="TimeMonitoring">
+                <ScalarProperty Name="IdTimeMonitoring" ColumnName="IdTimeMonitoring" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
+                <ScalarProperty Name="WorkingDay" ColumnName="WorkingDay" />
+                <ScalarProperty Name="IdWorkHistory" ColumnName="IdWorkHistory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeNotifications">
+            <EntityTypeMapping TypeName="WorkingHoursModel.TypeNotification">
+              <MappingFragment StoreEntitySet="TypeNotification">
+                <ScalarProperty Name="IdTypeNotification" ColumnName="IdTypeNotification" />
+                <ScalarProperty Name="TypeNotification1" ColumnName="TypeNotification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WorkingHoursModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DateBirthday" ColumnName="DateBirthday" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="isVaitingForOrg" ColumnName="isVaitingForOrg" />
+                <ScalarProperty Name="IdVideoManager" ColumnName="IdVideoManager" />
+                <ScalarProperty Name="isOrganizationOwner" ColumnName="isOrganizationOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProjects">
+            <EntityTypeMapping TypeName="WorkingHoursModel.UserProject">
+              <MappingFragment StoreEntitySet="UserProject">
+                <ScalarProperty Name="IdUserProject" ColumnName="IdUserProject" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdProject" ColumnName="IdProject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoManagers">
+            <EntityTypeMapping TypeName="WorkingHoursModel.VideoManager">
+              <MappingFragment StoreEntitySet="VideoManager">
+                <ScalarProperty Name="IdVideoManager" ColumnName="IdVideoManager" />
+                <ScalarProperty Name="VideoFolder" ColumnName="VideoFolder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkHistories">
+            <EntityTypeMapping TypeName="WorkingHoursModel.WorkHistory">
+              <MappingFragment StoreEntitySet="WorkHistory">
+                <ScalarProperty Name="IdHistory" ColumnName="IdHistory" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SpentMinutes" ColumnName="SpentMinutes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

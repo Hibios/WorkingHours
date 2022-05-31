@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83452bb76eaa42a9a18d368d71b315f3" Name="Diagram1">
+        <EntityTypeShape EntityType="WorkingHoursModel.Break" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.BreakType" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.Notification" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.Organization" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.OrganizationType" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.Project" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.Role" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.Task" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.TaskStatu" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.TaskWork" Width="1.5" PointX="12.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.TimeMonitoring" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.TypeNotification" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.User" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.UserProject" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.VideoManager" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkingHoursModel.WorkHistory" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Break_BreakType" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Break_TimeMonitoring" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Notification_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Notification_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Notification_TypeNotification" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Organization_OrganizationType" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_User_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_UserProject_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Employee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Task_TaskStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_Task_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_TaskWork_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_TaskWork_WorkHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_TimeMonitoring_User" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_TimeMonitoring_WorkHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_User_VideoManager" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkingHoursModel.FK_UserProject_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
